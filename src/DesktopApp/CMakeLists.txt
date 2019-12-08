@@ -161,7 +161,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
    -DCMAKE_INTDIR="Release" 
     )
     if(MSVC)
-        target_compile_options(${PROJECT_NAME} PRIVATE  /W4 /GR /Gy)
+        target_compile_options(${PROJECT_NAME} PRIVATE  /W4 /GR /Gy /Zi)
         target_link_options(${PROJECT_NAME} PRIVATE  /DEBUG:FASTLINK)
     endif()
 endif()
