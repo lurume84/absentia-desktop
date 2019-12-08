@@ -98,7 +98,8 @@ foreach(FILE ${SRC_FILES})
     source_group("${GROUP}" FILES "${FILE}")
 endforeach()
 
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Absentia")
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Absentia" PDB_NAME "Absentia"
+    PDB_OUTPUT_DIRECTORY "${CMAKE_EXECUTABLE_OUTPUT_DIRECTORY}")
 
 ######################### Flags ############################
 # Defines Flags for Windows and Linux                      #
@@ -135,6 +136,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
     if(MSVC)
         target_compile_options(${PROJECT_NAME} PRIVATE  /W4 /Od /GR /Gy /Zi)
+        target_link_options(${PROJECT_NAME} PRIVATE  /DEBUG)
     endif()
 endif()
 
@@ -160,6 +162,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     )
     if(MSVC)
         target_compile_options(${PROJECT_NAME} PRIVATE  /W4 /GR /Gy)
+        target_link_options(${PROJECT_NAME} PRIVATE  /DEBUG:FASTLINK)
     endif()
 endif()
 
